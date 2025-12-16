@@ -20,11 +20,11 @@ public sealed partial class CommandBufferTest
 
         var mySet = new SparseSet();
 
-        var first = mySet.Create(new Entity(0, 0));
+        var first = mySet.Create(new Entity(0, Guid.Empty));
         mySet.Set(first, new Transform { X = 10, Y = 10 });
         var transform = mySet.Get<Transform>(first);
 
-        var second = mySet.Create(new Entity(0, 0));
+        var second = mySet.Create(new Entity(0, Guid.Empty));
         mySet.Set(second, new Rotation { X = 10, Y = 10 });
         var rotation = mySet.Get<Rotation>(second);
 
@@ -65,7 +65,7 @@ public sealed partial class CommandBufferTest
 
         commandBuffer.Playback(world);
 
-        entity = new Entity(0, 0);
+        entity = new Entity(0, Guid.Empty);
         That(world.Get<Transform>(entity).X, Is.EqualTo(20));
         That(world.Get<Transform>(entity).Y, Is.EqualTo(20));
         IsTrue(world.Has<Ai>(entity));
@@ -203,7 +203,7 @@ public sealed partial class CommandBufferTest
 
         commandBuffer.Playback(world);
 
-        bufferedEntity = new Entity(1, 0);
+        bufferedEntity = new Entity(1, Guid.Empty);
 
         That(world.Get<Transform>(entity).X, Is.EqualTo(20));
         That(world.Get<Transform>(entity).Y, Is.EqualTo(20));

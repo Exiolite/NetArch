@@ -1,5 +1,6 @@
 using Arch.Core;
 using Arch.Core.Utils;
+using NUnit.Framework.Constraints;
 using static NUnit.Framework.Assert;
 
 namespace Arch.Tests;
@@ -34,7 +35,7 @@ public sealed class ArchetypeTest
         // Fill archetype
         for (var index = 0; index < entities; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             archetype.Add(entity, out _, out _);
         }
 
@@ -59,7 +60,7 @@ public sealed class ArchetypeTest
         // Fill archetype
         for (var index = 0; index < count; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             entities[index] = entity;
         }
 
@@ -94,7 +95,7 @@ public sealed class ArchetypeTest
         // Add entities
         for (var index = 0; index < entities; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             archetype.Add(entity, out _, out _);
         }
 
@@ -118,7 +119,7 @@ public sealed class ArchetypeTest
         // Add entities
         for (var index = 0; index < entities; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             archetype.Add(entity, out _, out _);
         }
 
@@ -141,7 +142,7 @@ public sealed class ArchetypeTest
         // Add entities
         for (var index = 0; index < entities; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             archetype.Add(entity, out _, out _);
         }
 
@@ -167,7 +168,7 @@ public sealed class ArchetypeTest
         // Add entities
         for (var index = 0; index < entities; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             archetype.Add(entity, out _, out _);
         }
 
@@ -192,8 +193,8 @@ public sealed class ArchetypeTest
         var otherArchetype = new Archetype(_otherGroup, _baseChunkSize, _baseChunkEntityCount);
 
         // Add two entities into different archetypes to move one to the other later.
-        var entity = new Entity(1, 0);
-        var otherEntity = new Entity(2, 0);
+        var entity = new Entity(1, Guid.Empty);
+        var otherEntity = new Entity(2, Guid.Empty);
         archetype.Add(entity, out _, out var entityOneSlot);
         otherArchetype.Add(otherEntity, out _, out _);
 
@@ -228,7 +229,7 @@ public sealed class ArchetypeTest
         // Fill chunks with data to copy
         for (int index = 0; index < sourceAmount; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             source.Add(entity, out _, out var entityOneSlot);
             source.Set(ref entityOneSlot, new Transform { X = 10, Y = 10 });
             source.Set(ref entityOneSlot, new Rotation { X = 10, Y = 10 });
@@ -237,7 +238,7 @@ public sealed class ArchetypeTest
         // Fill chunks with data to copy
         for (int index = 0; index < destinationAmount; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             destination.Add(entity, out _, out var entityOneSlot);
             destination.Set(ref entityOneSlot, new Transform { X = 100, Y = 100 });
             destination.Set(ref entityOneSlot, new Rotation { X = 100, Y = 100 });
@@ -334,7 +335,7 @@ public sealed class ArchetypeTest
         // Fill chunks with data to copy
         for (int index = 0; index < sourceAmount; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             source.Add(entity,out _, out var entityOneSlot);
             source.Set(ref entityOneSlot, new Transform { X = 10, Y = 10 });
             source.Set(ref entityOneSlot, new Rotation { X = 10, Y = 10 });
@@ -343,7 +344,7 @@ public sealed class ArchetypeTest
         // Fill chunks with data to copy
         for (int index = 0; index < destinationAmount; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             destination.Add(entity, out _, out var entityOneSlot);
             destination.Set(ref entityOneSlot, new Transform { X = 10, Y = 10 });
             destination.Set(ref entityOneSlot, new Rotation { X = 10, Y = 10 });
@@ -385,7 +386,7 @@ public sealed class ArchetypeTest
 
         for (var index = 0; index < entities; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.NewGuid());
             archetype.Add(entity, out _, out _);
         }
 
@@ -395,7 +396,7 @@ public sealed class ArchetypeTest
         // Create next n entities in the chunk to see if they are created correctly
         for (var index = 0; index < created; index++)
         {
-            var entity = new Entity(entities+index, 0);
+            var entity = new Entity(entities+index, Guid.Empty);
             archetype.Add(entity, out _, out var createdIn);
             That(slots[index], Is.EqualTo(createdIn));
         }

@@ -24,7 +24,7 @@ public sealed class ChunkTest
 
         for (var index = 0; index < _chunk.Capacity; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             _chunk.Add(entity);
 
             var t = new Transform();
@@ -47,7 +47,7 @@ public sealed class ChunkTest
 
         for (var index = 0; index < _chunk.Capacity; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             _chunk.Add(entity);
 
             var t = new Transform();
@@ -74,7 +74,7 @@ public sealed class ChunkTest
 
         for (var index = 0; index < 5; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             _chunk.Add(entity);
 
             var t = new Transform();
@@ -102,8 +102,8 @@ public sealed class ChunkTest
     {
         _chunk = new Chunk(1000, _types);
 
-        var newEntity = new Entity(1, 0);
-        var newEntityTwo = new Entity(2, 0);
+        var newEntity = new Entity(1, Guid.Empty);
+        var newEntityTwo = new Entity(2, Guid.Empty);
 
         var firstIndex = _chunk.Add(newEntity);
         _chunk.Add(newEntityTwo);
@@ -127,7 +127,7 @@ public sealed class ChunkTest
 
         for (var index = 0; index < _chunk.Capacity; index++)
         {
-            var entity = new Entity(index, 0);
+            var entity = new Entity(index, Guid.Empty);
             _chunk.Add(entity);
 
             var t = new Transform();

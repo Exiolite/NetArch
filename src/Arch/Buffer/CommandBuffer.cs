@@ -174,7 +174,7 @@ public sealed partial class CommandBuffer : IDisposable
     {
         lock (this)
         {
-            var entity = new Entity(-(Size + 1), -1);
+            var entity = new Entity(-(Size + 1), Guid.Empty);
             Register(entity, out _);
 
             var command = new CreateCommand(Size - 1, types);

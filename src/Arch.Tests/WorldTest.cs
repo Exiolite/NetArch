@@ -276,7 +276,7 @@ public sealed partial class WorldTest
         // Remove
         for (var index = 0; index < 500; index++)
         {
-            _world.Destroy(new Entity(index, _world.Id));
+            _world.Destroy(new Entity(index, Guid.Empty));
         }
 
         var after = _world.Size;
@@ -866,7 +866,7 @@ public partial class WorldTest
         That(_world.GetArchetype(entity2), Is.EqualTo(_world.GetArchetype(entity)));
         That(arch, Is.EqualTo(_world.GetArchetype(entity)));
     }
-    
+
     /// <summary>
     ///     Checks if the <see cref="World"/> is copied correctly over a new instance.
     /// </summary>
@@ -897,7 +897,7 @@ public partial class WorldTest
             That(copyArchetype.EntityCount, Is.EqualTo(sourceArchetype.EntityCount));
         }
     }
-    
+
     /// <summary>
     ///     Checks if the <see cref="World"/> is copied correctly over a new instance, skipping empty archetypes.
     /// </summary>

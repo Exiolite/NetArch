@@ -19,6 +19,8 @@ public readonly struct Entity : IEquatable<Entity>, IComparable<Entity>
     /// </summary>
     public readonly int Id = -1;
 
+    public readonly Guid NetworkId = Guid.Empty;
+
     /// <summary>
     ///     The version of an entity.
     /// </summary>
@@ -27,7 +29,7 @@ public readonly struct Entity : IEquatable<Entity>, IComparable<Entity>
     /// <summary>
     ///     A null entity, used for comparison.
     /// </summary>
-    public static readonly Entity Null = new(-1, 0, -1);
+    public static readonly Entity Null = new(-1, Guid.Empty, -1);
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="Entity"/> struct.
@@ -35,9 +37,10 @@ public readonly struct Entity : IEquatable<Entity>, IComparable<Entity>
     /// <param name="id">Its unique id.</param>
     /// <param name="worldId">Its world id, not used for this entity since its pure ecs.</param>
     /// <param name="version">Its version.</param>
-    internal Entity(int id, int worldId)
+    internal Entity(int id, Guid networkId)
     {
         Id = id;
+        NetworkId = networkId;
         Version = 1;
     }
 
@@ -47,9 +50,10 @@ public readonly struct Entity : IEquatable<Entity>, IComparable<Entity>
     /// <param name="id">Its unique id.</param>
     /// <param name="worldId">Its world id, not used for this entity since its pure ecs.</param>
     /// <param name="version">Its version.</param>
-    internal Entity(int id, int worldId, int version)
+    internal Entity(int id, Guid networkId, int version)
     {
         Id = id;
+        NetworkId = networkId;
         Version = version;
     }
 

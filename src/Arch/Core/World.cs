@@ -244,7 +244,7 @@ public partial class World : IDisposable
     {
         var recycle = RecycledIds.TryDequeue(out var recycledId);
         var recycled = recycle ? recycledId : new RecycledEntity(Size, 1);
-        entity = new Entity(recycled.Id, Id, recycled.Version);
+        entity = new Entity(recycled.Id, Guid.NewGuid(), recycled.Version);
         Size++;
     }
 
@@ -1761,12 +1761,12 @@ public partial class World
             {
                 continue;
             }
-            
+
             var newArchetype = copy.GetOrCreate(archetype.Signature);
             Archetype.Copy(archetype, newArchetype, false);
             copy.Size += newArchetype.EntityCount;
         }
-        
+
         return copy;
     }
 }

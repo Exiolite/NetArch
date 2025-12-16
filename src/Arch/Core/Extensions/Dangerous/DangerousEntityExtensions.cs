@@ -14,10 +14,10 @@ public static class DangerousEntityExtensions
     /// <param name="world">Its world id.</param>
     /// <param name="version">Its version.</param>
     /// <returns>The new <see cref="Entity"/>.</returns>
-    public static Entity CreateEntityStruct(int id, int world, int version)
+    public static Entity CreateEntityStruct(int id, Guid networkId, int version)
     {
 #if PURE_ECS
-        return new Entity(id, 0, version);
+        return new Entity(id, networkId, version);
 #else
         return new Entity(id, world, version);
 #endif
